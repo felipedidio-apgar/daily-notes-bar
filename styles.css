@@ -1,8 +1,111 @@
-/*
+.date-panel-container {
+	position: relative;
+	padding: 8px;
+	padding-top: 40px; /* Extra space to avoid Windows title bar buttons */
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+/* "Go to Today" button */
+.date-panel-today-btn {
+	position: absolute;
+	left: 0.5rem;
+	right: 0.5rem;
+	width: calc(100% - 1rem);
+	padding: 12px 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	cursor: pointer;
+	background-color: #4a86e8;
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-weight: 500;
+	z-index: 10;
+	transition: background-color 0.15s ease, opacity 0.15s ease;
+}
 
-If your plugin does not need CSS, delete this file.
+.date-panel-today-btn:hover {
+	background-color: #3a76d8;
+}
 
-*/
+.date-panel-today-btn svg {
+	width: 16px;
+	height: 16px;
+}
+
+.date-panel-today-btn.position-top {
+	top: var(--size-4-3);
+	bottom: auto;
+}
+
+.date-panel-today-btn.position-bottom {
+	top: auto;
+	bottom: var(--size-4-8);
+}
+
+.date-panel-today-btn.hidden {
+	opacity: 0;
+	pointer-events: none;
+}
+
+/* Scrollable container */
+.date-panel-scroll {
+	flex: 1;
+	overflow-y: auto;
+	margin-top: 8px;
+}
+
+.date-panel-list {
+	position: relative;
+}
+
+/* Spacer element that defines the scrollable height */
+.date-panel-spacer {
+	pointer-events: none;
+}
+
+.date-panel-day {
+	padding: 4px 12px;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.15s ease;
+	font-family: var(--font-monospace);
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+}
+
+.date-panel-day:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+/* Existing notes - styled like internal links */
+.date-panel-day.exists {
+	color: var(--link-color);
+}
+
+.date-panel-day.exists:hover {
+	color: var(--link-color-hover);
+}
+
+/* Non-existing notes - styled like unresolved links */
+.date-panel-day.not-exists {
+	color: var(--link-unresolved-color);
+	opacity: var(--link-unresolved-opacity);
+}
+
+/* Today's date - golden highlight */
+.date-panel-day.is-today {
+	font-weight: 600;
+	color: #b8860b !important; /* Dark goldenrod */
+	background-color: rgba(218, 165, 32, 0.15); /* Goldenrod with transparency */
+	border: 1px solid rgba(218, 165, 32, 0.4);
+}
+
+.date-panel-day.is-today:hover {
+	background-color: rgba(218, 165, 32, 0.25);
+}
